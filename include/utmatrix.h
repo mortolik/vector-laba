@@ -64,14 +64,16 @@ template <class T>
 TVector<T>::TVector(int s, int si)
 {
 	//Новый код
-	/*if ( (s < 0) || (s > MAX_VECTOR_SIZE) )
+	if ( (s < 0) || (s > MAX_VECTOR_SIZE) )
 		throw "Wrong size";
-	if ( (si < 0) || (si >= s) )
-		throw "Wrong size";*/
+	if ( (si < 0))
+		throw "Wrong size";
 	Size = s;
 	StartIndex = si;
 	
 	pVector = new T[Size];
+	for (int i = 0; i < Size; i++)
+		pVector[i] = 0;
 } /*-------------------------------------------------------------------------*/
 
 template <class T> //конструктор копирования
@@ -93,6 +95,8 @@ TVector<T>::~TVector()
 template <class T> // доступ
 T& TVector<T>::operator[](int pos)
 {
+	if ((pos < 0) || (pos > MAX_VECTOR_SIZE))
+		throw ("Wrong Index");
 	return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
@@ -158,6 +162,7 @@ TVector<T> TVector<T>::operator*(const T &val)
 template <class T> // сложение
 TVector<T> TVector<T>::operator + (const TVector<T> &v)
 {
+	if (v.Size != Size) throw ("Different size");
 	TVector<T> res(Size);
 	for (int i = 0; i < Size; i++)
 		res.pVector[i] = pVector[i] + v.pVector[i];
@@ -167,6 +172,7 @@ TVector<T> TVector<T>::operator + (const TVector<T> &v)
 template <class T> // вычитание
 TVector<T> TVector<T>::operator-(const TVector<T> &v)
 {
+	if (v.Size != Size) throw ("Different sizes");
 	TVector<T> res(Size);
 	for (int i = 0; i < Size; i++)
 		res.pVector[i] = pVector[i] - v.pVector[i];
@@ -177,7 +183,7 @@ template <class T> // скалярное произведение
 T TVector<T>::operator*(const TVector<T> &v)
 {
 	if (v.Size != Size) throw ("Different sizes");
-	T res;
+	T res = 0;
 	for (int i = 0; i < Size; i++)
 		res = res + (v.pVector[i] * pVector[i]);
 	return res;
@@ -216,6 +222,8 @@ public:
 template <class T>
 TMatrix<T>::TMatrix(int s): TVector<TVector<T>>(s)
 {
+	if (s<0 || s > MAX_MATRIX_SIZE)
+		throw("Wrong size");
 	Size = s;
 	for (int i = 0; i < Size; i++)
 	{
@@ -263,9 +271,10 @@ TMatrix<T>& TMatrix<T>::operator=(const TMatrix<T> &mt)
 		delete[] pVector;
 		Size = mt.Size;
 		pVector = new TVector<T>[Size];
-		for (int i = 0; i < Size; i++)
-			pVector[i] = mt.pVector[i];
 	}
+
+	for (int i = 0; i < Size; i++)
+		pVector[i] = mt.pVector[i];
 	return *this;
 } /*-------------------------------------------------------------------------*/
 

@@ -1,0 +1,4 @@
+C:\Users\s22380141\source\repos\vector-laba-main\sln\vc10\Debug\sample_utmatrix.exe
+C:\Users\s22380141\source\repos\vector-laba-main\sln\vc10\Debug\sample_utmatrix.pdb
+E:\vector-laba-main\sln\vc10\Debug\sample_utmatrix.exe
+C:\Users\User\source\repos\vector-laba-main\sln\vc10\Debug\sample_utmatrix.exe

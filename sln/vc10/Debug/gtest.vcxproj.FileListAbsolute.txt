@@ -1,0 +1,3 @@
+C:\Users\s22380141\source\repos\vector-laba-main\sln\vc10\Debug\gtest.lib
+C:\Users\s22380141\source\repos\vector-laba-main\sln\vc10\Debug\gtest.pdb
+C:\Users\User\source\repos\vector-laba-main\sln\vc10\Debug\gtest.lib
